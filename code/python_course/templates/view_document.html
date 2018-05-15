@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load md2 %}
+{% block title %}{{doc.title}} &mdash; Разработка сайтов на Python{% endblock %}
+{% block content %}
+    <article class="assignment">
+        <div class="assignment-bar"><a href="{% url "lessons_view" %}">&laquo; Назад</a></div>
+        <h1 class="assignment-title title">{{doc.title}}</h1>
+        {% if doc.date %}<p class="assignment-date">{{doc.date|date:"j E Y"}}</p>{% endif %}
+        {{doc.text|markdown:"code-friendly, fenced-code-blocks"}}
+    </article>
+{% endblock %}

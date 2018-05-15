@@ -1,0 +1,5 @@
+TODO по files
+~~~~~~~~~~~~~
+
+1. Сделать upload_file view
+2. 

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load md2 %}
+{% block content %}
+                <h1 class="title">Домашние задания</h1>
+                {% for a in assignments %}
+                <a href="{% url "assignment_view" a.identifier %}" class="box">
+                    <article>
+                        <h2>Задание {{forloop.counter}}. {{ a.title }}</h2>
+                        <div class="lesson-date">{{ a.date|date:"j E" }}</div>
+                        <div>{{a.description|markdown}}</div>
+                    </article>
+                </a>
+                {% empty %}
+                <p>Ни одного задания пока нет.</p>
+                {% endfor %}
+{% endblock %}

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{%block title%}Разработка сайтов на Python{%endblock%}</title>
+        <meta name="author" content="Анатолий Грико">
+        <meta name="description" content="{%block metadescription%}Курс IT-Академии Алексея Сухорукова по разработке сайтов на Python{%endblock%}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static "css/main.css" %}">
+        <link rel="stylesheet" href="{% static "css/pygments.css" %}">
+    </head>
+    <body>
+        <header>
+            <div id="site-title-academy">
+                <div class="cont">
+                    <a href="http://itsuhorukov.ru" target="_blank">
+                        <img src="{% static "img/itacademylogo.svg" %}" alt="Логотип IT-Академии" />
+                    </a>
+                </div>
+            </div>
+            <div class="cont">
+                <h1>
+                    <a class="site-logo" href="{% url "lessons_view" %}">Язык программирования Python</a>
+                </h1>
+                {% if timetable %}
+                <div id="info">
+                    <h1>Расписание занятий</h1>
+                    <table>
+                        {% for i in timetable %}
+                        <tr>
+                            <td>{{i.day_name}}</td>
+                            <td class="table-time">{{i.start_time|time:"H:i"}}&nbsp;&ndash;&nbsp;{{i.end_time|time:"H:i"}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+            <nav>
+                <div class="cont">
+                    <ul>
+                        <li>{% if nav != "lessons" %}<a href="{% url "lessons_view" %}">{% endif %}Занятия{% if nav != "lessons" %}</a>{% endif %}</li>
+                        <li>{% if nav != "assignments" %}<a href="{% url "assignments_view" %}">{% endif %}Домашние задания{% if nav != "assignments" %}</a>{% endif %}</li>
+                        <li>{% if nav != "reading" %}<a href="{% url "reading_view" %}">{% endif %}Внеклассное чтение{% if nav != "reading" %}</a>{% endif %}</li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div id="content">
+            <div class="cont">
+                {%block content%}{%endblock%}
+            </div>
+        </div>
+        <footer>
+            <div class="cont">
+                <div id="copyright">
+                    <h1>&copy; 2017, <a href="https://anhel.in">Анатолий Грико</a></h1>
+                    <p class="works-on">Работает на <a href="https://www.python.org/" target="_blank">Python</a>, 
+                    <a href="https://www.djangoproject.com/" target="_blank">Django</a>,
+                    <a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a>,
+                    <a href="http://nginx.org/" target="_blank">nginx</a> и
+                    <a href="http://uwsgi-docs.readthedocs.io/" target="_blank">uWSGI</a>.</p>
+                </div><!--
+                --><div id="links">
+                    <h1>Ссылки</h1>
+                    <ul>
+                        <li><a href="https://www.python.org/" target="_blank">Официальный сайт Python</a></li>
+                        <li><a href="https://www.pythonanywhere.com/" target="_blank">Хостинг PythonAnywhere</a></li>
+                        <li><a href="https://www.djangoproject.com/" target="_blank">Официальный сайт Django</a></li>
+                        <li><a href="https://www.jetbrains.com/pycharm/" target="_blank">Среда разработки PyCharm</a></li>
+                    </ul>
+                </div><!--
+                --><div id="contacts">
+                    <h1>Контакты с преподавателем</h1>
+                    <ul>
+                        <li><a href="mailto:anhel@ngs.ru">anhel@ngs.ru</a></li>
+                        <li><a href="https://vk.com/id1137145" target="_blank">ВКонтакте</a></li>
+                        <li><a href="https://ru.linkedin.com/in/anatolygriko" target="_blank">Linked.in</a></li>
+                        <li><a href="skype:a.strauke?chat">Skype: a.strauke</a></li>
+                        <li><a href="https://t.me/anhel_in" target="_blank">Telegram: @anhel_in</a></li>
+                        <li><a href="https://get.wire.com" target="_blank">Wire: @anhel</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14pt;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    background: url(//static.anhel.in/img/office_bg.png);
+    background-color: #18191c;
+}
+
+body {
+    position: relative;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    max-width: 800px;
+    width: 25em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+
+    border: 1px solid black;
+    border-bottom-width: 2  px;
+    padding: 14pt 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 7px #101010;
+
+    background: #fff200;
+}
+
+header {
+    border-bottom: 1px solid #000;
+}
+
+header h1 {
+    font-variant: small-caps;
+    text-align: center;
+    margin: 0;
+    padding: 0 0 14pt 0;
+}
+
+.content p {
+    padding: 0 28pt;
+}
+
+.content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.content ul li {
+    display: inline-block;
+    border: 1px solid gray;
+    padding: 14pt;
+    margin: 7pt 28pt;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #ffef7c 0%, #ffe100 100%);
+    color: black;
+}
+.content ul li img.item-logo {
+    float: left;
+    padding: 0 8pt 0 0;
+}
+.content ul li h2 {
+    margin: 0 0 0 8pt;
+    padding: 0;
+    font-size: 100%;    
+}
+.content ul li p {
+    padding: 0;
+    margin: 4pt 0 0 8pt;
+}

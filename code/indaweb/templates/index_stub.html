@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Anhel in da web</title>
+        <link rel="stylesheet" href="{% static "css/index_stub.css" %}">
+    </head>
+    <body>
+        <div class="content">
+            <header><h1>Anhel in da Web</h1></header>
+            <p>Что тут можно найти:</p>
+            <ul>
+                <a href="/python/">
+                    <li>
+                        <img class="item-logo" src="{% static "img/python_c.png" %}">
+                        <h2>Разработка сайтов на Python</h2>
+                        <p>Курс для IT-Академии Сухорукова</p>
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </body>
+</html>

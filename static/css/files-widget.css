@@ -1,0 +1,63 @@
+#files-widget {
+    width: 300px;
+    height: 700px;
+    font-family: Arial;
+}
+
+.files-upload-block, .files-progress-block, .files-search-block, .files-sort-block {
+    height: 1.5em;
+    width: 100%;
+}
+
+.files-search-block input {
+    width: 80%;
+}
+.files-search-block button {
+    width: 15%;
+}
+
+.files-sort-block a.selected {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.files-list-block {
+    padding: 0.1em;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.files-list-block li {
+    display: block;
+    margin: 0;
+}
+
+.files-list-block li:after {
+    clear: both;
+    content: "";
+    display: block;
+    width: 100%;
+}
+
+.files-list-block li img.thumb {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 0 0.5em 0.5em 0;
+}
+
+.files-list-block li .filename {
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
+.files-list-block li .file-links {
+    font-size: 80%;
+}
+
+.files-list-block li .file-date {
+    font-size: 80%;
+    opacity: 0.8;
+}

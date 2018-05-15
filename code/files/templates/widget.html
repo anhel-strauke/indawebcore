@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<head>
+    <meta charset="utf-8">
+    <title>Files widget test</title>
+    
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/files-widget.css">
+    <script src="/static/js/files-widget.js"></script>
+</head>
+<body>
+
+    <div id="files-widget">
+        {% csrf_token %}
+        <div class="files-upload-block" data-id="upload-block">
+            <input type="file" multiple>
+        </div>
+        <div class="files-progress-block" data-id="upload-progress-block">
+            Uploading...
+        </div>
+        <div class="files-search-block" data-id="search-block">
+            <input type="text" placeholder="Search file name..."><button class="search-clear" data-id="search-clear">×</button>
+        </div>
+        <div class="files-sort-block" data-id="sort-block">
+            Sort by <a href="#" data-id="sort-by-name">Name</a> | <a href="#" data-id="sort-by-date">Date</a>
+        </div>
+        <div class="files-list-loading-block" data-id="list-loading-block">
+            Loading files...
+        </div>
+        <ul class="files-list-block" data-id="list-block">
+        </ul>
+    </div>
+
+    <script>
+        $(function() {
+            new FilesWidgetController($("#files-widget"));
+        });
+    </script>
+</body>

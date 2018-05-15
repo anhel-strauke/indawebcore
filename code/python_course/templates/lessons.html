@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load md2 %}
+{% block content %}
+                <h1 class="title">Занятия и материалы к ним</h1>
+                {% for l in lessons %}
+                <article>
+                    <h2>Занятие {{forloop.counter}}. {{ l.title }}</h2>
+                    <div class="lesson-date">{{ l.date|date:"j E" }}</div>
+                    <div class="description">{{l.description|markdown}}</div>
+                    {% if l.links.all %}
+                    <ul>
+                        {%for link in l.links.all %}
+                        <li>
+                            {% if link.url %}<a href="{{link.url}}">{% endif %}{{link.text}}{% if link.url %}</a>{% endif %}
+                        </li>
+                       {%endfor%}
+                    </ul>
+                   {% endif %}
+                </article>
+                {% empty %}
+                <p>Ни одного занятия пока нет.</p>
+                {% endfor %}
+{% endblock %}
