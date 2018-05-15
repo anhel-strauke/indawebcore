@@ -64,7 +64,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'aincore.urls'
+ROOT_URLCONF = 'indawebcore.urls'
 
 TEMPLATES = [
     {
@@ -89,16 +89,8 @@ WSGI_APPLICATION = 'aincore.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 if DEPLOYED:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'website_db',
-            'USER': 'website',
-            'PASSWORD': 'CorrectHorseBatteryStapple',
-            'HOST': '127.0.0.1',
-            'PORT': '5432'
-        }
-    }
+    import production_db_config
+    DATABASES = production_db_config.DATABASES
 else:
     DATABASES = {
         'default': {
@@ -146,7 +138,7 @@ USE_TZ = True
 
 if DEPLOYED:
     STATIC_URL = '//static.' + socket.gethostname() + "/"
-    STATIC_ROOT = "/home/website/static"
+    STATIC_ROOT = "/home/website/repo/static"
 else:
     STATIC_URL = '/static/'
 
@@ -160,7 +152,7 @@ else:
 	]
 
 if DEPLOYED:
-    MEDIA_ROOT = "/home/website/static/upload/" #os.path.join(BASE_DIR, "upload")
+    MEDIA_ROOT = "/home/website/upload/" #os.path.join(BASE_DIR, "upload")
     MEDIA_URL = "//static." + socket.gethostname() + "/upload/"
 else:
     MEDIA_ROOT = os.path.join(BASE_DIR, "upload")
