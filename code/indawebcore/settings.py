@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'indawebcore.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 if DEPLOYED:
-    import production_db_config
+    from . import production_db_config
     DATABASES = production_db_config.DATABASES
 else:
     DATABASES = {

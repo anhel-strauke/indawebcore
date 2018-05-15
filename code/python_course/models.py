@@ -25,7 +25,7 @@ class TimetableItem(models.Model):
         ("Суббота", "Суббота"),
         ("Воскресенье", "Воскресенье")
     )
-    course = models.ForeignKey(Course, related_name="timetable")
+    course = models.ForeignKey(Course, related_name="timetable", on_delete=models.CASCADE)
     index = models.IntegerField(default=timetable_item_index_default)
     day_name = models.CharField(max_length=15, choices=DAY_NAME_CHOICES)
     start_time = models.TimeField()
@@ -36,7 +36,7 @@ class TimetableItem(models.Model):
 
 
 class Lesson(models.Model):
-    course = models.ForeignKey(Course, related_name="lessons")
+    course = models.ForeignKey(Course, related_name="lessons", on_delete=models.CASCADE)
     identifier = models.SlugField(max_length=50, primary_key=True)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
@@ -54,7 +54,7 @@ class LessonLink(models.Model):
     class Meta:
         ordering = ['index']
     index = models.IntegerField(default=0)
-    lesson = models.ForeignKey(Lesson, related_name="links")
+    lesson = models.ForeignKey(Lesson, related_name="links", on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
     url = models.URLField(blank=True)
 
@@ -73,7 +73,7 @@ class Document(models.Model):
 
 
 class Assignment(models.Model):
-    course = models.ForeignKey(Course, related_name="assignments")
+    course = models.ForeignKey(Course, related_name="assignments", on_delete=models.CASCADE)
     identifier = models.SlugField(max_length=50, primary_key=True)
     date = models.DateField()
     title = models.CharField(max_length=200)
