@@ -49,6 +49,11 @@
 		-webkit-text-size-adjust: none;
 	}
 
+	.python-icon {
+		background: url(/images/python.png) no-repeat;
+		background-size: contain;
+	}
+
 /* Box Model */
 
 	*, *:before, *:after {
