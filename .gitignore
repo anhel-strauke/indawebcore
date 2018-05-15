@@ -88,3 +88,4 @@ ENV/
 # Rope project settings
 .ropeproject
 code/indawebcore/production_db_config.py
+code/indaweb/templates/.DS_Store

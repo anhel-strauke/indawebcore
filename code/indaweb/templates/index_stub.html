@@ -1,24 +1,56 @@
-{% load static %}
 <!DOCTYPE HTML>
+<!--
+	Identity by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Anhel in da web</title>
-        <link rel="stylesheet" href="{% static "css/index_stub.css" %}">
-    </head>
-    <body>
-        <div class="content">
-            <header><h1>Anhel in da Web</h1></header>
-            <p>Что тут можно найти:</p>
-            <ul>
-                <a href="/python/">
-                    <li>
-                        <img class="item-logo" src="{% static "img/python_c.png" %}">
-                        <h2>Разработка сайтов на Python</h2>
-                        <p>Курс для IT-Академии Сухорукова</p>
-                    </li>
-                </a>
-            </ul>
-        </div>
-    </body>
+	<head>
+		<title>Anhel in da Web</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="//static.anhel.in/assets/js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="//static.anhel.in/assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="//static.anhel.in/assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="//static.anhel.in/assets/css/ie8.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="//static.anhel.in/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main">
+						<header>
+							<span class="avatar"><img src="//static.anhel.in/images/avatar.jpg" alt="" /></span>
+							<h1>Anhel in da Web</h1>
+							<p>Что здесь можно найти сейчас:</p>
+						</header>
+						<footer>
+							<ul class="icons">
+								<li><a href="/python/" class="fa-cog" title="Курс Python для IT-Академии">Курс Python</a></li>
+							</ul>
+						</footer>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; Anatoly Griko</li><li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
+
+	</body>
 </html>
