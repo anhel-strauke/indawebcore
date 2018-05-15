@@ -30,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 't1mm_vl*qku+gokgm=))p@b6cp*5zdl6jeg@t_va62(x4+5g_q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not DEPLOYED
+DEBUG = True#not DEPLOYED
 
 ALLOWED_HOSTS = [
     'anhel.in',

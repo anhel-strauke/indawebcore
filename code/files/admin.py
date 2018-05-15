@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import reverse
+from django.utils.html import format_html
 
 # Register your models here.
 from . import models
@@ -21,7 +22,8 @@ def delete_uploaded_files(modeladmin, request, queryset):
 delete_uploaded_files.short_description = "Delete selected files completely"
 
 def full_file_url(fileobj):
-    return reverse("download_file", args=fileobj.name)
+    url = reverse("download_file", args=(fileobj.name,))
+    return format_html("<a href=\"{}\">{}</a>", url, url)
 full_file_url.short_description = "URL"
 
 
