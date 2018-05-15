@@ -82,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'aincore.wsgi.application'
+WSGI_APPLICATION = 'indawebcore.wsgi.application'
 
 
 # Database
