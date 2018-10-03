@@ -31,7 +31,7 @@ body {
     position: absolute;
     top: 0em;
     right: 0;
-    width: 10em;
+    width: 12em;
     padding: 0.3em 0 0 0;
 }
 #info h1 {
@@ -136,11 +136,20 @@ nav ul li a:hover {
     font-weight: 400;
 }
 
+#content h1 {
+    font-weight: 300;
+    font-size: 140%;
+    margin: 0 0 0.5em 0;
+    padding: 1em 0 0 0;
+}
+
+#content h2, #content h3, #content h4 {
+    font-weight: 300;
+}
+
 #content h1.title {
     font-weight: 300;
     font-size: 150%;
-    margin: 0 0 0.5em 0;
-    padding: 1em 0 0 0;
 }
 
 #content article {
