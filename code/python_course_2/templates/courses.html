@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Программы всех курсов — Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block content %}
+                <h1 class="page-title">Текущие и завершённые курсы</h1>
+                <p class="courses-description">
+                    Здесь можно посмотреть программы и задания предыдущих курсов.
+                </p>
+                {% if courses %}<ul id="courses">{% for course in courses %}
+                    <li><a href="{{course.url}}">{{course.name}}{% if course.active %} (текущий){% endif %}</a></li>{% endfor %}
+                </ul>
+                {% else %}<article id="nothing-to-display" class="lesson current">
+                        <h1>Извините, ни одного курса в базе данных нет.</h1>
+                        <div class="description">
+                            <p>Загляните сюда позже. Или посмотрите пока программы предыдущих курс… Постойте-ка! Вы же это и пытаетесь сделать…</p>
+                        </div>
+                    </article>
+{% endif %}{% endblock %}

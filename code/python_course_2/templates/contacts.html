@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Контакты с преподавателем — {% if course %}курс {{course.name|lower}} — {% endif %}Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block content %}
+                <h1 class="page-title mobile">Контакты с преподавателем</h1>
+                <article class="contacts">
+                    <h2>Анатолий Грико</h2>
+                    <ul>
+                        <li><span class="label">Почта:</span><a href="mailto:anhel@ngs.ru">anhel@ngs.ru</a></li>
+                        <li><span class="label">Skype:</span><a href="skype:a.strauke?chat">a.strauke</a></li>
+                        <li><span class="label">Telegram:</span><a target="_blank" href="https://t.me/anhel_in">@anhel_in</a></li>
+                        <li><span class="label">Linked.in:</span><a target="_blank" href="https://ru.linkedin.com/in/anatolygriko">anatolygriko</a></li>
+                        <li><span class="label">VK:</span><a target="_blank" href="https://vk.com/id1137145">Анатолий Грико</a></li>
+                    </ul>
+                    <p>Обращайтесь с любыми вопросами, я отвечу при первой возможности.</p>
+                    <p>Домашние задания присылайте по возможности на <a href="mailto:anhel@ngs.ru">почту</a>. Файлы с решением 
+                        прикрепляйте к письму (если можно, в виде архива).</p>
+                    <p>Пожалуйста, не вставляйте код прямо в тело письма, с этим потом неудобно работать, да и отступы часто портятся.</p>
+                    <h2>IT-Академия Алексея Сухорукова</h2>
+                    <ul>
+                        <li><span class="label">Сайт:</span><a target="_blank" href="http://itsuhorukov.ru/">http://itsuhorukov.ru/</a></li>
+                        <li><span class="label">Почта:</span><a href="mailto:academ@suhorukov.com">academ@suhorukov.com</a></li>
+                        <li><span class="label">Телефон:</span><a href="tel:8-800-500-15-56">8 800 500-15-56</a></li>
+                    </ul>
+                    <p>IT-Академия Алексея Сухорукова – учебный центр, существующий на рынке IT c 2011 года. Мы занимаемся обучением IT-специалистов уже шестой год подряд. Под руководством лучших преподавателей России успешно проводим IT- и смежные курсы по интенсивным программам с расписанием, учитывающим дневную занятость студентов.</p>
+                </article>
+{% endblock %}

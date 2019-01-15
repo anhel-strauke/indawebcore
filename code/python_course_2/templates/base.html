@@ -1,0 +1,109 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="{% static "css/pygments.css" %}">
+    <meta name="author" content="Анатолий Грико">
+    <meta name="description" content="{%block metadescription%}Курс IT-Академии Алексея Сухорукова по языку программирования Python{%endblock%}">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block headers %}{% endblock %}
+</head>
+<body>
+    <div class="mobile" id="menu-slide">
+        <div id="menu-close-box">
+            <a id="menu-close-button" href="#">&#10005; Закрыть</a>
+        </div>
+        <div class="headers">
+            <h1>Язык программирования Python</h1>
+            <h2>Курс IT-Академии Сухорукова</h2>
+        </div>
+        <nav>
+            <ul>
+                <li>{% if page != "lessons" %}<a href="{% if course.archived %}{% url "c_lessons_view" course.id %}{% else %}{% url "lessons_view" %}{% endif %}">{% endif %}Занятия{% if page != "lessons" %}</a>{% endif %}</li>
+                <li>{% if page != "assignments" %}<a href="{% if course.archived %}{% url "c_assignments_view" course.id %}{% else %}{% url "assignments_view" %}{% endif %}">{% endif %}Задачи{% if page != "assignments" %}</a>{% endif %}</li>
+                {% if course and course.active and not course.archived %}<li>{% if page != "timetable" %}<a href="{% url "timetable_view" %}">{% endif %}Расписание{% if page != "timetable" %}</a>{% if is_timetable_changes %}<span class="attention-mark"></span>{% endif %}{% endif %}</li>{% endif %}
+                <li>{% if page != "links" %}<a href="{% if course.archived %}{% url "c_linkpost_view" course.id %}{% else %}{% url "linkpost_view" %}{% endif %}">{% endif %}Ссылки{% if page != "links" %}</a>{% if is_new_linkposts %}<span class="attention-mark"></span>{% endif %}{% endif %}</li>
+                <li>{% if page != "reading" %}<a href="{% if course.archived %}{% url "c_reading_view" course.id %}{% else %}{% url "reading_view" %}{% endif %}">{% endif %}Что почитать{% if page != "reading" %}</a>{% endif %}</li>
+                <li>{% if page != "contacts" %}<a href="{% if course.archived %}{% url "c_contacts_view" course.id %}{% else %}{% url "contacts_view" %}{% endif %}">{% endif %}Контакты{% if page != "contacts" %}</a>{% endif %}</li>
+            </ul>
+        </nav>
+    </div>
+    <div class="mobile" id="menu-button-box">
+        <a href="#" id="top-menu-button">
+            &#9776; Навигация
+        </a>
+    </div>
+    <div id="pusher">
+        <header>
+            <div class="content">
+                <h1><a href="{% url "lessons_view" %}">Язык программирования Python</a></h1>
+                <h2>Курс IT-Академии Сухорукова</h2>
+                <div id="info">
+                    {% if course %}
+                    <h1 id="current-course"><a href="{% url "courses_view" %}" title="Список курсов">{{ course.name }}</a></h1>
+                    {% if course.active and course.next_lesson %}
+                    <h1>Следующее занятие</h1>
+                    <p>{{ course.next_lesson }}{% if user_tz %} <abbr title="{{user_tz.short_desc}}
+Вы можете сменить часовой пояс в Расписании">{{user_tz.short_name}}</abbr>{% endif %}</p>
+                    {% else %}<p>Этот курс закончился</p>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <nav id="main-navigation" class="desktop">
+                <ul class="content">
+                    <li>{% if page != "lessons" %}<a href="{% if course.archived %}{% url "c_lessons_view" course.id %}{% else %}{% url "lessons_view" %}{% endif %}">{% endif %}Занятия{% if page != "lessons" %}</a>{% endif %}</li>
+                    <li>{% if page != "assignments" %}<a href="{% if course.archived %}{% url "c_assignments_view" course.id %}{% else %}{% url "assignments_view" %}{% endif %}">{% endif %}Задачи{% if page != "assignments" %}</a>{% endif %}</li>
+                    {% if course and course.active and not course.archived %}<li>{% if page != "timetable" %}<a href="{% url "timetable_view" %}">{% endif %}Расписание{% if page != "timetable" %}</a>{% if is_timetable_changes %}<span class="attention-mark" title="Изменения в расписании"></span>{% endif %}{% endif %}</li>{% endif %}
+                    <li>{% if page != "links" %}<a href="{% if course.archived %}{% url "c_linkpost_view" course.id %}{% else %}{% url "linkpost_view" %}{% endif %}">{% endif %}Ссылки{% if page != "links" %}</a>{% if is_new_linkposts %}<span class="attention-mark" title="Есть новые ссылки!"></span>{% endif %}{% endif %}</li>
+                    <li>{% if page != "reading" %}<a href="{% if course.archived %}{% url "c_reading_view" course.id %}{% else %}{% url "reading_view" %}{% endif %}">{% endif %}Что почитать{% if page != "reading" %}</a>{% endif %}</li>
+                    <li>{% if page != "contacts" %}<a href="{% if course.archived %}{% url "c_contacts_view" course.id %}{% else %}{% url "contacts_view" %}{% endif %}">{% endif %}Контакты{% if page != "contacts" %}</a>{% endif %}</li>
+                </ul>
+            </nav>
+        </header>
+        <div id="main-content">
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        <footer>
+            <div class="content">
+                <div class="column">
+                    <p id="copyright">&copy; 2019 <a href="{% url "contacts_view" %}">Анатолий Грико</a>.</p>
+                    <p>Специально для <a target="_blank" href="http://itsuhorukov.ru/">IT-Академии Алексея Сухорукова</a>.</p>
+                    <p id="works-on">Работает на 
+                        <a targer="_blank" href="https://www.djangoproject.com/">django</a>, 
+                        <a target="_blank" href="https://www.postgresql.org/">postgreSQL</a>, 
+                        <a target="_blank" href="https://uwsgi-docs.readthedocs.io/">uWSGI</a> и 
+                        <a target="_blank" href="https://nginx.org/">nginx</a>.</p>
+                </div><div class="column">
+                    <h1>Навигация</h1>
+                    <ul id="bottom-links">
+                        <li><a href="{% if course.archived %}{% url "c_lessons_view" course.id %}{% else %}{% url "lessons_view" %}{% endif %}">Занятия</a></li>
+                        <li><a href="{% if course.archived %}{% url "c_assignments_view" course.id %}{% else %}{% url "assignments_view" %}{% endif %}">Домашние задания</a></li>
+                        {% if course and course.active %}<li><a href="{% url "timetable_view" %}">Расписание занятий</a></li>{% endif %}
+                        <li><a href="{% if course.archived %}{% url "c_linkpost_view" course.id %}{% else %}{% url "linkpost_view" %}{% endif %}">Ссылки на статьи</a></li>
+                        <li><a href="{% if course.archived %}{% url "c_reading_view" course.id %}{% else %}{% url "reading_view" %}{% endif %}">Что почитать ещё</a></li>
+                        <li><a href="{% if course.archived %}{% url "c_contacts_view" course.id %}{% else %}{% url "contacts_view" %}{% endif %}">Контакты преподавателя</a></li>
+                        <li><a href="{% url "courses_view" %}">Предыдущие курсы</a></li>
+                    </ul>
+                </div><div class="column">
+                    <h1>Полезные ссылки</h1>
+                    <ul>
+                        <li><a target="_blank" href="https://www.python.org/">Официальный сайт Python</a></li>
+                        <li><a target="_blank" href="https://www.pythonanywhere.com/">Сервис PythonAnywhere</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static "js/navigation.js" %}"></script>
+    <script src="{% static "js/foreignhrefs.js" %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

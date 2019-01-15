@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+                <article id="nothing-to-display" class="lesson current">
+                    <h1>Извините, курс ещё не начался</h1>
+                    <div class="description">
+                        <p>Дождитесь начала очередного курса. Или посмотрите пока <a href="{% url "courses_view" %}">программы предыдущих курсов</a>.</p>
+                    </div>
+                </article>
+{% endblock %}

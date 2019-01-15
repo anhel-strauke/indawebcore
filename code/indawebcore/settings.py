@@ -36,6 +36,7 @@ DEBUG = not DEPLOYED
 ALLOWED_HOSTS = [
     'anhel.in',
     'www.anhel.in',
+    '127.0.0.1',
 ]
 
 
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'django_markdown2',
     'sendfile',
     'files',
+    'python_course_2.apps.PythonCourse2Config',
     'python_course.apps.PythonCourseConfig',
     'indaweb',
 ]
@@ -123,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru_RU.utf8'
 
 TIME_ZONE = 'Asia/Novosibirsk'
 
@@ -149,7 +151,7 @@ if DEPLOYED:
 	]
 else:
 	STATICFILES_DIRS = [
-	    os.path.join(BASE_DIR, "static"),
+	    os.path.join(BASE_DIR, "../static"),
 	]
 
 if DEPLOYED:

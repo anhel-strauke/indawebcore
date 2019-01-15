@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load md2 %}
+{% block title %}Занятия — курс {{course.name|lower}} — Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block content %}
+                <h1 class="page-title mobile">Занятия</h1>
+                {% for lesson in lessons %}<article class="lesson{% if forloop.first %} current{% endif %}" id="lesson-{{lesson.id}}">
+                    <h1>Занятие {{forloop.revcounter}}. {{lesson.title}}</h1>
+                    <div class="date">{{lesson.date}}</div>
+                    <div class="description md">
+                        {{lesson.description|markdown}}
+                    </div>
+                    {% if lesson.links %}<ul class="links">
+                        {% for link in lesson.links %}<li><a{% if link.is_new_folder %} target="_blank"{% endif %} href="{{link.url}}">{{link.text}}</a></li>
+                        {% endfor %}
+                    </ul>{% endif %}
+                </article>
+                {% empty %}<article id="nothing-to-display" class="lesson current">
+                    <h1>Извините, ни одного занятия пока не запланировано.</h1>
+                    <div class="description">
+                        <p>Дождитесь начала очередного курса. Или посмотрите пока <a href="{% url "courses_view" %}">программы предыдущих курсов</a>.</p>
+                    </div>
+                </article>
+                {% endfor %}
+{% endblock %}

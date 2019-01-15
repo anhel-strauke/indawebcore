@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load md2 %}
+{% block title %}Выбор часового пояса— Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block content %}
+                <h1 class="page-title">Выбор часового пояса</h1>
+                <div class="tz-description">
+                    <p>Расписание занятий и дата и время следующего занятия показываются для выбранного
+                        часового пояса.<span class="desktop"> Вы можете выбрать другой часовой пояс.</span>
+                    </p>
+                </div>
+                <div id="server-time">
+                    <p>В Новосибирске сейчас <span class="time">{{server_time}}</span>.</p>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="controls">
+                        <label for="cb_country">Страна:</label>
+                        <select id="cb_country" name="cb_country" required>
+                            {% for country in countries %}<option value="{{country.code}}"{% if country.code == selected_country_code %} selected{% endif %}>{{country.name}}</option>
+                        {% endfor %}</select>
+                    </div>
+                    <div class="controls">
+                        <label for="cb_tz">Время и часовой пояс:</label>
+                        <select id="cb_tz" name="cb_tz" required>
+                            {% for tz in selected_country_tz %}<option value="{{tz.tz}}"{% if tz.tz == selected_tz%} selected{% endif %}>{{tz.time}} {{tz.name}}</option>
+                        {% endfor %}</select>
+                    </div>
+                    <div class="controls">
+                        <input type="submit" value="Сохранить изменения">
+                    </div>
+                </form>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const tz = {
+            {% for country in all_tz %}"{{country.code}}": [
+                {% for tzone in country.tz %}["{{tzone.tz}}", "{{tzone.time}} {{tzone.name}}"]{% if not forloop.last%},{% endif %}
+                {% endfor %}
+            ]{% if not forloop.last %},{% endif %}
+        {% endfor %}};
+
+        (function() {
+            var cb_country = document.getElementById("cb_country")
+            cb_country.addEventListener("change", function(event) {
+                var code = cb_country.value
+                var cb_tz = document.getElementById("cb_tz")
+                while (cb_tz.childNodes.length > 0) {
+                    cb_tz.removeChild(cb_tz.childNodes[0])
+                }
+                var country_tz = tz[code]
+                for (var i = 0; i < country_tz.length; ++i) {
+                    var opt = document.createElement("OPTION")
+                    opt.setAttribute("value", country_tz[i][0])
+                    if (i == 0) {
+                        opt.setAttribute("selected", "selected")
+                    }
+                    opt.innerText = country_tz[i][1]
+                    cb_tz.appendChild(opt)
+                }
+            })
+        })()
+    </script>
+{% endblock %}

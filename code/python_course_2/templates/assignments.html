@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load md2 %}
+{% block title %}Задачи — курс {{course.name|lower}} — Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block content %}
+                <h1 class="page-title mobile">Домашние задания</h1>
+                {% for assignment in assignments %}<a href="{% url "assignment_view" assignment.id %}" class="assignment">
+                    <h1>Задание {{ forloop.counter }}. {{assignment.title}}</h1>
+                    <div class="description md">
+                        {{ assignment.description|markdown}}
+                    </div>
+                </a>
+                {% empty %}<article id="nothing-to-display" class="lesson current">
+                    <h1>Извините, задач пока что нет.</h1>
+                    <div class="description">
+                        <p>Загляните сюда позже. Или посмотрите пока <a href="{% url "courses_view" %}">программы предыдущих курсов</a>.</p>
+                    </div>
+                </article>
+                {% endfor %}
+{% endblock %}

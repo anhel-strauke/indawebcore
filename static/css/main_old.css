@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,600&subset=cyrillic');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14pt;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    background: #202F47;
+}
+
+.cont {
+    max-width: 980px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+#info {
+    position: absolute;
+    top: 0em;
+    right: 0;
+    width: 12em;
+    padding: 0.3em 0 0 0;
+    overflow-y: hidden;
+}
+#info h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 80%;
+    font-weight: 400;
+    text-align: right;
+}
+#info a {
+    text-decoration: none;
+    color: #fff;
+}
+#info a:hover {
+    text-decoration: underline;
+}
+#info table {
+    font-size: 75%;
+    font-weight: 300;
+    padding-left: 1em;
+    width: 100%;
+}
+#info table td {
+    padding-left: 0.5em;
+    text-align: right;
+}
+#info p {
+    padding: 0;
+    margin: 0;
+    font-weight: 300;
+    text-align: right;
+    font-size: 80%;
+}
+
+header {
+    position: relative;
+    /*background: #11418e;*/
+    background: #05b4e7;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    padding: 14pt 0 0 0;
+    font-size: 180%;
+    font-weight: 100;
+    font-style: normal;
+}
+
+header h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#site-title-academy {
+    font-size: 80%;
+    font-weight: bold;
+    padding: 0.5em;
+    background: #fff;
+    color: #000;
+}
+#site-title-academy a {
+    text-decoration: none;
+    color: inherit;
+}
+#site-title-academy img {
+    vertical-align: middle;
+}
+
+nav {
+    margin: 2.4em 0 0 0;
+    padding: 0.6em 0 0.6em 0;
+    /*background: #101721;*/
+    background: #202F47;
+    box-shadow: inset 0 0 5px #000000;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li {
+    display: inline-block;
+    margin: 0 2em 0 0;
+    font-weight: 400;
+}
+nav ul li a {
+    text-decoration: none;
+    display: inline-block;
+    color: #05b4e7;
+    border-bottom: 2px solid #202F47;
+    width: 100%;
+    height: 100%;
+}
+nav ul li a:hover {
+    border-bottom: 2px solid #05b4e7;
+}
+
+#content {
+    min-height: 400px;
+    background: white;
+    color: #000;
+    box-shadow: 0 0 5px #000; 
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 0 0 2em 0;
+    font-weight: 400;
+}
+
+#content h1 {
+    font-weight: 300;
+    font-size: 140%;
+    margin: 0 0 0.5em 0;
+    padding: 1em 0 0 0;
+}
+
+#content h2, #content h3, #content h4 {
+    font-weight: 300;
+}
+
+#content h1.title {
+    font-weight: 300;
+    font-size: 150%;
+}
+
+#content article {
+    position: relative;
+    padding: 14pt 8pt 14pt 29pt;
+    
+    margin: 0 0 4pt 0;
+    border-radius: 3px;
+}
+
+#content article.assignment {
+    margin-top: 14pt;
+    padding: 14pt 28pt;
+}
+#content article.assignment div.assignment-bar {
+    margin: 0 0 14pt 0;
+}
+#content article.assignment div.assignment-bar a {
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 2px;
+    text-decoration: none;
+    background: #05b4e7;
+    color: #fff;
+    font-size: 80%;
+}
+#content article.assignment div.assignment-bar a:hover {
+    background: #028EB6;
+}
+#content article.assignment div.assignment-bar a:active {
+    background: #016683;
+}
+#content article.assignment h1.assignment-title {
+    margin: 0 0 8pt 0;
+    padding: 0;
+}
+#content article.assignment p.assignment-date {
+    margin: 0 0 14pt 0;
+    color: #353535;
+}
+#content article.assignment p img {
+    max-width: 100%;
+}
+
+#content article h2 {
+    font-weight: 400;
+    font-size: 120%;
+    margin: 0 0 0 -21pt;
+    padding: 0;
+}
+
+#content article .lesson-date {
+    font-style: italic;
+    font-weight: bold;
+    position: absolute;
+    right: 8pt;
+    top: 14pt;
+}
+
+#content article p {
+    margin: 0.2em 0 0.6em 0;
+}
+
+#content article ul {
+    margin: 0.2em 0 0 0;
+}
+
+#content dt {
+    font-weight: bold;
+}
+#content dd {
+    margin-bottom: 1em;
+}
+#content dd p {
+    margin: 0 0 0.3em 0;
+}
+
+#content a {
+    color: #028EB6;
+    text-decoration: none;
+}
+#content a:hover {
+    text-decoration: underline;
+}
+#content a:visited {
+    color: #016683;
+}
+#content a:active {
+    color: #05b5e7;
+}
+
+#content a.box:hover {
+    text-decoration: none;
+}
+#content a.box article {
+    color: #000;
+    text-decoration: none;
+}
+#content a.box:hover > article {
+    background: #eaebed;
+}
+
+#content .assignment-title {
+    padding: 0;
+    margin: 1em 0;
+}
+
+pre {
+    overflow-x: auto;
+}
+code {
+    word-break: break-all;
+}
+
+
+footer {
+    padding: 1em 0 2em 0;
+    font-size: 80%;
+    font-weight: 300;
+    color: #8F98A6;
+    z-index: 0;
+}
+footer a {
+    color: inherit;
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+footer div {
+    display: inline-block;
+    width: 33%;
+    vertical-align: top;
+}
+footer div p {
+    display: block;
+    margin: 0 0 8pt 0;
+}
+footer div p.works-on {
+    padding-left: 1em;
+}
+footer div h1 {
+    margin: 0px 0px 0.6em 0px;
+    font-size: 100%;
+    font-weight: 400;
+}
+footer div ul {
+    margin: 0px;
+    padding: 0px 0px 0px 1em;
+}
+footer div li {
+    list-style: none;
+    padding-bottom: 0.2em;
+}
+
+@media screen and (max-width: 1199px) {
+    .cont {
+        padding: 0 0.5em;
+    }
+    #info {
+        right: 0.5em;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    header h1 {
+        padding: 0.2em 0 0 0;
+        font-size: 120%;
+	font-weight: 300;
+    }
+    #info {
+        position: static;
+        width: 100%;
+        text-align: left;
+    }
+    #info h1, #info table td, #info p {
+        text-align: left;
+    }
+    #info table, #info table tbody {
+        max-width: 20em;
+    }
+    nav {
+        margin: 0.5em 0 0 0;
+    }
+    #content article {
+        padding: 14pt 8pt 14pt 8pt;
+    }
+    #content article h2 {
+        margin: 0;
+    }
+    #content article .lesson-date {
+        font-style: italic;
+        font-weight: bold;
+        position: static;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 748px) {
+    #site-title-academy {
+        font-size: 60%;
+        font-weight: bold;
+        padding: 0.5em;
+        background: #fff;
+        color: #000;
+    }
+    footer {
+        font-size: 100%;
+    }
+    footer div {
+        display: block;
+        width: 100%;
+        margin: 0 0 1em 0;
+    }
+    footer div li {
+        list-style: none;
+        padding-bottom: 0.7em;
+    }
+}
+
+@media screen and (max-width: 584px) {
+    nav ul li {
+        display: block;
+        margin: 0;
+        padding: 1em 0.5em;
+        text-align: center;
+        border-bottom: 1px solid #000;
+        border-top: 1px solid #05b4e7;
+    }
+    nav ul li:first-child {
+        border-top: none;
+    }
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    nav ul li a {
+        border-bottom: none;
+    }
+    nav ul li a:hover {
+        border-bottom: none;
+        color: #05b4e7;
+        background: none;
+    }
+    nav {
+        padding: 0.4em 0;
+        font-size: 80%;
+    }
+    #content {
+        min-height: 0;
+    }
+    #content article ul li {
+        margin: 1em 0;
+    }
+    #content article.assignment {
+        margin-top: 14pt;
+        padding: 14pt 7pt;
+    }
+    #content article.assignment ul, #content article.assignment ol {
+        padding-left: 1.2em;
+    }
+    #content article.assignment blockquote {
+        margin: 0.7em 0.1em;
+    }
+    #content article.assignment blockquote code {
+        font-size: 80%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    #info {
+        width: auto;
+        min-width: 0;
+    }
+    #info table, #info table td {
+        padding-left: 0;
+    }
+    #content dd {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load md2 %}
+{% block title %}{{document.title}} — Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block content %}
+                <article class="assignment">
+                    {% comment %}<div class="assignment-date">{{document.date}}</div>{% endcomment %}
+                    <h1 class="assignment-title">{{document.title}}</h1>
+                    <div class="md">
+                    {{document.text|markdown:"code-friendly, fenced-code-blocks"}}
+                    </div>
+                </article>
+{% endblock %}
