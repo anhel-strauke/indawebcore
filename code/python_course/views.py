@@ -10,75 +10,64 @@ def get_course(course_identifier):
         except models.Course.DoesNotExist:
             raise Http404
     else:
-        active_courses = models.Course.objects.filter(started=True, finished=False).order_by("-start_date")
-        n = len(active_courses)
-        if n > 0:
-            return active_courses[n - 1]
-        else:
-            last_course = models.Course.objects.order_by("-start_date")[:1]
-            if len(last_course) > 0:
-                return last_course[0]
-            return None
+        raise Http404
 
 
-def lessons(request, course_name=None):
+def lessons(request, course_id=None):
     timetable = []
-    course = get_course(course_name)
+    course = get_course(course_id)
     if course is not None:
         lessons = course.lessons.order_by("date")
-        if not course.finished:
-            timetable = course.timetable.order_by("index")
-        return render(request, "lessons.html", context={"nav": "lessons", "lessons": lessons, "timetable": timetable})
+        print(course.start_date)
+        return render(request, "old_python/lessons.html", context={"course_id": course_id, "course": course, "nav": "lessons", "lessons": lessons, "timetable": timetable})
     else:
-        return render(request, "error_no_course.html", context={"nav": "lessons"})
+        return render(request, "old_python/error_no_course.html", context={"course_id": course_id, "nav": "lessons"})
 
 
-def assignments(request, course_name=None):
+def assignments(request, course_id=None):
     timetable = []
-    course = get_course(course_name)
+    course = get_course(course_id)
     if course is not None:
         assignments = course.assignments.order_by("date")
-        if not course.finished:
-            timetable = course.timetable.order_by("index")
-        return render(request, "assignments.html", context={"nav": "assignments", "assignments": assignments, "timetable": timetable})
+        return render(request, "old_python/assignments.html", context={"course_id": course_id, "course": course, "nav": "assignments", "assignments": assignments, "timetable": timetable})
     else:
-        return render(request, "error_no_course.html", context={"nav": "assignments"})
+        return render(request, "old_python/error_no_course.html", context={"course_id": course_id, "nav": "assignments"})
 
 
-def one_assignment(request, assignment_identifier, course_name=None):
+def one_assignment(request, assignment_identifier, course_id=None):
     timetable = []
-    course = get_course(course_name)
+    course = get_course(course_id)
     if course is not None:
         try:
             assignment = course.assignments.get(identifier=assignment_identifier)
             if not course.finished:
                 timetable = course.timetable.order_by("index")
-            return render(request, "view_assignment.html", context={"assignment": assignment, "timetable": timetable})
+            return render(request, "old_python/view_assignment.html", context={"course_id": course_id, "course": course, "assignment": assignment, "timetable": timetable})
         except models.Assignment.DoesNotExist:
             raise Http404
     else:
-        return render(request, "error_no_course.html")
+        return render(request, "old_python/error_no_course.html", {"course_id": course_id})
 
 
-def document(request, doc_identifier, course_name=None):
+def document(request, doc_identifier, course_id=None):
     timetable = []
-    course = get_course(course_name)
+    course = get_course(course_id)
     if course is not None:
         if not course.finished:
             timetable = course.timetable.order_by("index")
     try:
         doc = models.Document.objects.get(identifier=doc_identifier)
-        return render(request, "view_document.html", context={"doc": doc, "timetable": timetable})
+        return render(request, "old_python/view_document.html", context={"doc": doc, "timetable": timetable})
     except models.Document.DoesNotExist:
         raise Http404    
 
 
-def reading(request):
+def reading(request, course_id=None):
     timetable = []
-    course = get_course(None)
+    course = get_course(course_id)
     if course is not None:
         if not course.finished:
             timetable = course.timetable.order_by("index")
 
     reading_items = models.ReadingItem.objects.order_by("index")
-    return render(request, "reading.html", context={"nav": "reading", "reading_items": reading_items, "timetable": timetable})
+    return render(request, "old_python/reading.html", context={"course_id": course_id, "course": course, "nav": "reading", "reading_items": reading_items, "timetable": timetable})

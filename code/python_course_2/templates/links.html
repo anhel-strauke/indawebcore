@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load md2 %}
+{% block title %}Ссылки на статьи — {% if course %}курс {{course.name|lower}} — {% endif %}Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block content %}
+                <h1 class="page-title mobile">Ссылки на статьи</h1>
+                {% if links.has_previous %}<nav class="mob-pager mobile">
+                    <a href="{% url "linkpost_view" %}?page={{links.previous_page_number}}">&#9204;&nbsp;На страницу {{links.previous_page_number}} из {{links.paginator.num_pages}}</a>
+                </nav>{% endif %}
+                {% for link in links %}<article class="post">
+                    <h1><a target="blank" href="{{link.url}}">{{link.title}}</a></h1>
+                    <div class="link"><a target="blank" href="https://habr.com/company/otus/blog/433358/">https://habr.com/company/otus/blog/433358/</a></div>
+                    <div class="date">{{link.datetime|date:"d.m.Y"}}</div>
+                    <div class="description md">
+                        {{link.description|markdown}}
+                    </div>
+                </article>{% empty %}<article id="nothing-to-display" class="lesson current">
+                        <h1>Извините, пока ни одной ссылки не опубликовано.</h1>
+                </article>{% endfor %}{% if links.has_next or links.has_previous %}
+                <nav class="pager desktop">
+                        {% if links.has_previous %}<a href="{% url "linkpost_view" %}?page={{links.previous_page_number}}">&#9204;</a>{% else %}<span class="disabled-page">&#9204;</span>{% endif %}
+                        {% for page in links.paginator.page_range %}{% if page == links.number %}<span class="current-page">{{page}}</span>{% else %}<a href="{% url "linkpost_view" %}?page={{page}}">{{page}}</a>{% endif %}
+                        {% endfor %}{% if links.has_next %}<a href="{% url "linkpost_view" %}?page={{links.next_page_number}}">&#9205;</a>{% else %}<span class="disabled-page">&#9205;</span>{% endif %}
+                    </ul>
+                </nav>{% endif %}
+                {% if links.has_next %}<nav class="mob-pager mobile">
+                    <a href="{% url "linkpost_view" %}?page={{links.next_page_number}}">На страницу {{links.next_page_number}} из {{links.paginator.num_pages}} &#9205;</a>
+                </nav>{% endif %}
+{% endblock %}

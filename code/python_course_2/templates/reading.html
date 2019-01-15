@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load md2 %}
+{% block title %}Что ещё почитать? — {% if course %}курс {{course.name|lower}} — {% endif %}Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block content %}
+                <h1 class="page-title mobile">Что ещё почитать?</h1>
+                <p>Конечно, за наш краткий курс невозможно рассказать обо всех возможностях, особенностях и вариантах 
+                    применения как самого Python, так и стандартной библиотеки языка (об огромном количестве сторонних библиотек 
+                    даже речь не идёт). Если вы действительно собираетесь активно использовать Python, необходимо будет искать
+                    информацию самостоятельно.</p>
+                <p>Я приведу несколько ссылок на известные мне полезные материалы по Python.</p>
+                {% if reading_items %}
+                <dl class="readings">
+                    {% for itm in reading_items %}<dt><a target="_blank" href="{{itm.url}}">{{itm.title}}</a></dt>
+                    <dd class="md">
+                        {{itm.description|markdown}}
+                    </dd>
+                {% endfor %}</dl>
+                {% else %}<article id="nothing-to-display" class="lesson current">
+                    <h1>Извините, ни одного материала пока не добавлено.</h1>
+                    <div class="description">
+                        <p>Возвращайтесь к нам после начала очередного курса!.</p>
+                    </div>
+                </article>{% endif %}
+{% endblock %}

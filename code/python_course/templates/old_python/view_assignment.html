@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "old_python/base.html" %}
 {% load md2 %}
 {% block title %}Задание: {{assignment.title}} &mdash; Разработка сайтов на Python{% endblock %}
 {% block content %}
     <article class="assignment">
-        <div class="assignment-bar"><a href="{% url "assignments_view" %}">&#10094; Назад</a></div>
+        {% comment %}<div class="assignment-bar"><a href="{% url "o_assignments_view" course_id %}">&#10094; Назад</a></div>{% endcomment %}
         <h1 class="assignment-title title">Домашнее задание. {{assignment.title}}</h1>
         <p class="assignment-date">{{assignment.date|date:"j E Y"}}</p>
         {{assignment.text|markdown:"code-friendly, fenced-code-blocks"}}

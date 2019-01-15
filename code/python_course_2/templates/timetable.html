@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Расписание — курс {{course.name|lower}} — Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block content %}
+                <h1 class="page-title mobile">Расписание</h1>
+                <div class="cal-description">
+                    <p>Часовой пояс — {{user_tz_name}}. Вы можете <a href="{% url "change_timezone_view" %}">выбрать другой часовой пояс</a>.</p>
+                </div>
+                {% if messages %}<div class="cal-messages">
+                    <h1>Важная информация</h1>
+                    {% for m in messages %}<p>{{m}}</p>
+                    {% endfor %}
+                </div>
+                {%endif%}
+                {% for month in calendar %}<div class="month-cal">
+                    <table>
+                        <tr class="month-name">
+                            <th colspan="7">{{month.month_name}} {{month.year}}</th>
+                        </tr>
+                        <tr>
+                            <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>
+                        </tr>
+                        {% for week in month.weeks %}
+                        <tr>
+                            {% for day in week %}
+                            <td{% if day.type %} class="{{day.type}}"{% endif %}>{% if day.day %}
+                                <div class="day">{{day.day}}</div>
+                                <div class="time">
+                                    {% if day.time_start and day.time_end %}{{day.time_start}}<br>{{day.time_end}}{% elif day.cancelled %}<div class="time"><span title="Перенос занятия">&#10149;</span>{% endif %}
+                                </div>
+                            {% endif %}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>{% endfor %}
+                <div class="cal-legend">
+                    <h1>Обозначения в календаре</h1>
+                    <ul>
+                        <li><span class="today">10</span> &ndash; Сегодняшняя дата</li>
+                        <li><span class="lesson">10</span> &ndash; Плановое занятие, указано время начала и окончания</li>
+                        <li><span class="moved-lesson">10</span> &ndash; Перенесённое занятие</li>
+                        <li><span class="no-lesson">&#10149;</span> &ndash; Перенос занятия, в этот день занятия нет</li>
+                    </ul>
+                </div>
+{% endblock %}
