@@ -8,7 +8,7 @@
                 </nav>{% endif %}
                 {% for link in links %}<article class="post">
                     <h1><a target="blank" href="{{link.url}}">{{link.title}}</a></h1>
-                    <div class="link"><a target="blank" href="https://habr.com/company/otus/blog/433358/">https://habr.com/company/otus/blog/433358/</a></div>
+                    <div class="link"><a target="blank" href="{{link.url}}">{{link.url}}</a></div>
                     <div class="date">{{link.datetime|date:"d.m.Y"}}</div>
                     <div class="description md">
                         {{link.description|markdown}}
