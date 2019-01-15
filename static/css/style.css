@@ -27,7 +27,7 @@
     font-style: normal;
 }
 
-[class^="icon-"]:before, [class*=" icon-"]:before, article.lesson>ul>li:before, #courses>li::before, article.post>.link::before {
+[class^="icon-"]:before, [class*=" icon-"]:before, article.lesson>ul>li:before, #courses>li::before, article.post>.link::before, .attention-mark:after {
     font-family: "fontello";
     font-style: normal;
     font-weight: normal;
@@ -69,6 +69,16 @@ article.lesson>ul>li:before {
 article.post>.link::before {
     /*content: "\2BB1\00A0";*/
     content: "\E805\00A0";
+}
+.attention-mark:after {
+    color: #fff;
+    vertical-align: super;
+    font-size: 50%;
+    content: '\e800';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    overflow: visible;
 }
 
 html {
@@ -180,16 +190,6 @@ header>.content {
 }
 #main-navigation>ul>li>a:active {
     color: #fff;
-}
-
-.attention-mark:after {
-    color: #fff;
-    vertical-align: super;
-    font-size: 50%;
-    content: '\2022';
-    display: inline-block;
-    width: 0;
-    overflow: visible;
 }
 
 /* Footer */
