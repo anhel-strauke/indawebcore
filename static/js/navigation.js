@@ -5,15 +5,17 @@
         function closeNav() {
             var slide = document.getElementById("menu-slide")
             slide.style.marginLeft = "-" + sideWidth;
-            document.documentElement.style.overflow = 'scroll';
-            document.body.scroll = "yes";
+            document.documentElement.style.overflow = "scroll"
+            document.body.scroll = "yes"
+            document.body.style.overflow = ""
         }
 
         function openNav() {
             var slide = document.getElementById("menu-slide")
             slide.style.marginLeft = "0"
-            document.documentElement.style.overflow = 'hidden';
-            document.body.scroll = "no";
+            document.documentElement.style.overflow = 'hidden'
+            document.body.scroll = "no"
+            document.body.style.overflow = "hidden"
         }
 
         document.getElementById("top-menu-button").addEventListener("click", (function(event) {
