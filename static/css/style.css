@@ -12,7 +12,7 @@
 
 */
 
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,600,600i&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,600,600i&subset=cyrillic,cyrillic-ext,latin-ext');
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i,600,600i&subset=cyrillic');
 
 html {
