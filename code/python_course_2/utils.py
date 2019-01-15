@@ -8,6 +8,7 @@ from django.utils.timezone import get_default_timezone
 
 ISO_STRFTIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
 MONTH_NAMES = ("", "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь")
+MONTH_NAMES_ALT = ("", "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
 
 def _month_and_year(dt, do_year=True):
     m = MONTH_NAMES[dt.month]
@@ -258,6 +259,11 @@ def visit_timetable(request, now):
     request.session["last_timetable"] = now.strftime(ISO_STRFTIME_FORMAT)
 
 
+def make_next_lesson_date(dt):
+    month_name = MONTH_NAMES_ALT[dt.month]
+    return dt.strftime("%-d {} в %H:%M".format(month_name)).capitalize()
+
+
 def prepare_context(request, course):
     res = {}
     server_tz = get_default_timezone()
@@ -275,7 +281,7 @@ def prepare_context(request, course):
         if is_active:
             next_lesson_dt = get_closest_lesson(course, now, user_tz)
             if next_lesson_dt:
-                course_info["next_lesson"] = next_lesson_dt.strftime("%-d %B в %H:%M").capitalize()
+                course_info["next_lesson"] = make_next_lesson_date(next_lesson_dt)
                 user_tz_shortname, user_tz_desc = make_tz_shortname_for(next_lesson_dt)
                 res["user_tz"] = {
                     "short_name": user_tz_shortname,
