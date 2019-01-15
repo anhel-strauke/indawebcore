@@ -15,6 +15,62 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100i,200,200i,300,300i,400,400i,600,600i&subset=cyrillic,cyrillic-ext,latin-ext');
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i,600,600i&subset=cyrillic');
 
+@font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.eot?47699156');
+    src: url('../font/fontello.eot?47699156#iefix') format('embedded-opentype'),
+            url('../font/fontello.woff2?47699156') format('woff2'),
+            url('../font/fontello.woff?47699156') format('woff'),
+            url('../font/fontello.ttf?47699156') format('truetype'),
+            url('../font/fontello.svg?47699156#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before, article.lesson>ul>li:before, #courses>li::before, article.post>.link::before {
+    font-family: "fontello";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: inherit;
+}
+
+/* Fontello definitions */
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    display: inline-block;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+  }
+.icon-menu:before { content: '\e807'; } 
+.icon-right-open:before { content: '\e801'; }
+.icon-left-open:before { content: '\e800'; }
+
+#courses>li::before, article.lesson>ul>li:before {
+    display: inline-block;
+    margin: 0 0.5em 0 -1.5em;
+    line-height: 1;
+}
+#courses>li::before {
+    content: "\e804";
+}
+article.lesson>ul>li:before {
+    /*content: "\2B95";*/content: "\e804";
+}
+article.post>.link::before {
+    /*content: "\2BB1\00A0";*/
+    content: "\E805\00A0";
+}
+
 html {
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 14pt;
@@ -256,11 +312,6 @@ article.lesson>ul>li {
 article.lesson>ul>li:last-of-type {
     margin-bottom: 0.5em;
 }
-article.lesson>ul>li:before {
-    content: "\2B95";
-    display: inline-block;
-    margin: 0 0.5em 0 -1.5em;
-}
 article.lesson a {
     text-decoration: none;
     color: #028EB6;
@@ -293,9 +344,6 @@ article.post>.link {
 article.post>.link>a {
     color: #202F47;
     text-decoration: underline;
-}
-article.post>.link::before {
-    content: "\2BB1\00A0";
 }
 
 #nothing-to-display {
@@ -512,12 +560,6 @@ article.contacts a:hover {
     list-style: none;
     margin: 0.5em 0 1.5em 0;
     padding: 0 0 0 2em;
-}
-#courses>li::before {
-    content: "\2B95";
-    display: inline-block;
-    margin: 0 0.5em 0 -1.5em;
-    line-height: 1;
 }
 #courses>li {
     margin-bottom: 1em;
