@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -57,6 +58,24 @@ class LessonLink(models.Model):
     lesson = models.ForeignKey(Lesson, related_name="links", on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
     url = models.URLField(blank=True)
+
+    PREFIXES = [
+        "https://anhel.in/python/assignments/",
+        "https://www.anhel.in/python/assignments/",
+    ]
+
+    def perm_url(self):
+        course_id = self.lesson.course.identifier
+        assign_id = None
+        for p in self.PREFIXES:
+            if self.url.startswith(p):
+                assign_id = self.url[len(p):]
+                break
+        if assign_id:
+            if assign_id.endswith("/"):
+                assign_id = assign_id[:-1]
+            return reverse("o_assignment_view", kwargs={"course_id": course_id, "assignment_identifier": assign_id})
+        return self.url
 
     def __str__(self):
         return "[{}] {} <{}>".format(self.index, self.text, self.url)
