@@ -758,6 +758,7 @@ form .controls input[type="submit"] {
         z-index: 2;
         transition: 0.2s;
         overflow: hidden;
+        overflow-y: auto;
         background: #202F47;
         color: #fff;
     }
