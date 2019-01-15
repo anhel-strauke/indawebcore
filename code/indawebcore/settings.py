@@ -15,6 +15,7 @@ import socket
 
 DEPLOY_HOSTNAMES = [
     'anhel.in',
+    'www.anhel.in',
 ]
 
 DEPLOYED = socket.gethostname() in DEPLOY_HOSTNAMES
