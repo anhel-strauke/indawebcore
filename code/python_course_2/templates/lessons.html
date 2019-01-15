@@ -5,7 +5,7 @@
                 <h1 class="page-title mobile">Занятия</h1>
                 {% for lesson in lessons %}<article class="lesson{% if forloop.first %} current{% endif %}" id="lesson-{{lesson.id}}">
                     <h1>Занятие {{forloop.revcounter}}. {{lesson.title}}</h1>
-                    <div class="date">{{lesson.date}}</div>
+                    <div class="date">{{lesson.date|date:"j E"}}</div>
                     <div class="description md">
                         {{lesson.description|markdown}}
                     </div>

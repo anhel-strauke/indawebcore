@@ -22,7 +22,7 @@ def lessons_view(request, course_id=None):
     for l in lessons:
         out_lessons.append({
             "id": l.id,
-            "date": l.date.strftime("%d %B").lower(),
+            "date": l.date,
             "title": l.title,
             "description": l.description,
             "links": l.links.order_by("index")
