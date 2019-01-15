@@ -758,7 +758,6 @@ form .controls input[type="submit"] {
         z-index: 2;
         transition: 0.2s;
         overflow: hidden;
-        overflow-y: auto;
         background: #202F47;
         color: #fff;
     }
@@ -804,7 +803,7 @@ form .controls input[type="submit"] {
     #menu-slide>nav>ul>li {
         display: block;
         font-size: 120%;
-        margin: 0.2em 0 1.5em 0;
+        margin: 0.2em 0 1em 0;
     }
     #menu-slide>nav>ul>li>a {
         color: #05b4e7;
