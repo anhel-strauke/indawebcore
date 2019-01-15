@@ -9,11 +9,8 @@
         }
         var hostname_variants = [
             doc_hostname,
-            alt_doc_hostname,
-            "anhel.in",
-            "www.anhel.in"
+            alt_doc_hostname
         ] 
-        console.log(hostname_variants)
         var all_md_blocks = document.getElementsByClassName("md")
         for (var i = 0; i < all_md_blocks.length; ++i) {
             var block = all_md_blocks[i]
@@ -26,7 +23,6 @@
                             continue
                         }
                     }
-                    console.log("Processing link", link.hostname)
                     if (link.hostname && link.hostname.length > 0) {
                         var need_target = true
                         for (var k = 0; k < hostname_variants.length; ++k) {
