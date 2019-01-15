@@ -14,7 +14,7 @@
                 {% for month in calendar %}<div class="month-cal">
                     <table>
                         <tr class="month-name">
-                            <th colspan="7">{{month.month_name}} {{month.year}}</th>
+                            <th colspan="7">{{month.month_name|capfirst}} {{month.year}}</th>
                         </tr>
                         <tr>
                             <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>
