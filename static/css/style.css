@@ -749,7 +749,7 @@ form .controls input[type="submit"] {
         background: #05b4e7;
     }
     #menu-slide {
-        height: 100%;
+        height: 120%;
         width: 100%;
         margin-left: -100%;
         position: fixed;
