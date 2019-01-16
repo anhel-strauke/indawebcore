@@ -443,8 +443,11 @@ div.cal-legend ul {
 }
 div.cal-legend ul>li {
     margin: 0 0 0.5em 0;
+    padding-left: 3.2em;
+    text-indent: -3.2em;
 }
 div.cal-legend li>span {
+    text-indent: 0;
     display: inline-block;
     width: 2em;
     height: 1.5em;
