@@ -3,7 +3,7 @@
 {% block content %}
                 <h1 class="page-title mobile">Расписание занятий</h1>
                 <div class="cal-description">
-                    <p>Часовой пояс — {{user_tz_name}}. Вы можете <a href="{% url "change_timezone_view" %}">выбрать другой часовой пояс</a>.</p>
+                    <p>Показан часовой пояс {{user_tz_name}}. Вы можете <a href="{% url "change_timezone_view" %}">выбрать другой часовой пояс</a>.</p>
                 </div>
                 {% if messages %}<div class="cal-messages">
                     <h1>Важная информация</h1>

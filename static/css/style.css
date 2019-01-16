@@ -453,7 +453,7 @@ div.cal-legend li>span {
     vertical-align: middle;
 }
 .cal-description {
-    font-size: 80%;
+    font-size: 100%;
 }
 .cal-description>p>a, .cal-description>p>a:visited {
     color: #028EB6;
@@ -853,6 +853,9 @@ form .controls input[type="submit"] {
     }
     div.month-cal>table {
         font-size: 60%;
+    }
+    .cal-description {
+        font-size: 80%;
     }
     div.cal-messages {
         font-size: 80%;
