@@ -339,6 +339,8 @@ article.post>.link {
     font-size: 80%;
     padding: 0 0 0 0.5em;
     overflow: hidden;
+    word-wrap: normal;
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 article.post>.link>a {
