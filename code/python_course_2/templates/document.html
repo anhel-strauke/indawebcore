@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load md2 %}
-{% block title %}{{document.title}} — Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block title %}{{document.title}} — Язык программирования Python / IT-Академия Алексея Сухорукова{% if course %} (курс {{course.name|lower}}){% endif %}{% endblock %}
 {% block content %}
                 <article class="assignment">
                     {% comment %}<div class="assignment-date">{{document.date}}</div>{% endcomment %}

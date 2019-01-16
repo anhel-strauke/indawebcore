@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load md2 %}
-{% block title %}Задачи — курс {{course.name|lower}} — Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block title %}Задачи — Язык программирования Python / IT-Академия Алексея Сухорукова (курс {{course.name|lower}}){% endblock %}
 {% block content %}
                 <h1 class="page-title mobile">Домашние задания</h1>
                 {% for assignment in assignments %}<a href="{% url "assignment_view" assignment.id %}" class="assignment">

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Расписание — курс {{course.name|lower}} — Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block title %}Расписание занятий — Язык программирования Python / IT-Академия Алексея Сухорукова (курс {{course.name|lower}}){% endblock %}
 {% block content %}
-                <h1 class="page-title mobile">Расписание</h1>
+                <h1 class="page-title mobile">Расписание занятий</h1>
                 <div class="cal-description">
                     <p>Часовой пояс — {{user_tz_name}}. Вы можете <a href="{% url "change_timezone_view" %}">выбрать другой часовой пояс</a>.</p>
                 </div>

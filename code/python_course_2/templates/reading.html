@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load md2 %}
-{% block title %}Что ещё почитать? — {% if course %}курс {{course.name|lower}} — {% endif %}Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block title %}Что ещё почитать? — {% endif %}Язык программирования Python / IT-Академия Алексея Сухорукова{% if course %} (курс {{course.name|lower}}){% endblock %}
 {% block content %}
                 <h1 class="page-title mobile">Что ещё почитать?</h1>
                 <p>Конечно, за наш краткий курс невозможно рассказать обо всех возможностях, особенностях и вариантах 

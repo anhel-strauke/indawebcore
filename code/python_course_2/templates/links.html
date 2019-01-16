@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load md2 %}
-{% block title %}Ссылки на статьи — {% if course %}курс {{course.name|lower}} — {% endif %}Язык программирования Python (IT-Академия Алексея Сухорукова){% endblock %}
+{% block title %}Ссылки на статьи — Язык программирования Python / IT-Академия Алексея Сухорукова{% if course %} (курс {{course.name|lower}}){% endif %}{% endblock %}
 {% block content %}
                 <h1 class="page-title mobile">Ссылки на статьи</h1>
                 {% if links.has_previous %}<nav class="mob-pager mobile">
