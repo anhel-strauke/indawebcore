@@ -152,7 +152,7 @@ def build_calendar_from_events(events, target_tz):
         current_week = []
         targ_today = datetime.now(target_tz).date()
         for d in calendar_mgr.itermonthdates(year, month):
-            is_today = d == targ_today
+            is_today = (d == targ_today and d.month == month)
             if d.month != month:
                 new_day = {
                     "day": "", 
