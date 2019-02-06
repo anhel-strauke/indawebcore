@@ -94,3 +94,4 @@ code/indaweb/templates/.DS_Store
 # VSCode Files
 .vscode/
 code/db.sqlite3
+code/.DS_Store
