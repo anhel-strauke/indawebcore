@@ -6,7 +6,7 @@
                 {% for assignment in assignments %}<a href="{% url "assignment_view" assignment.id %}" class="assignment">
                     <h1>Задание {{ forloop.counter }}. {{assignment.title}}</h1>
                     <div class="description md">
-                        {{ assignment.description|markdown}}
+                        {{ assignment.description|markdown:"tables"}}
                     </div>
                 </a>
                 {% empty %}<article id="nothing-to-display" class="lesson current">
