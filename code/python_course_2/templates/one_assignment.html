@@ -6,7 +6,7 @@
                     {% comment %}<div class="assignment-date">{{assignment.date}}</div>{% endcomment %}
                     <h1 class="assignment-title">Задание. {{assignment.title}}</h1>
                     <div class="md">
-                    {{assignment.text|markdown:"code-friendly, fenced-code-blocks"}}
+                    {{assignment.text|markdown:"code-friendly, fenced-code-blocks, tables"}}
                     </div>
                 </article>
 {% endblock %}
