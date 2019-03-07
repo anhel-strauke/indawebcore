@@ -186,13 +186,16 @@ def translate_tz_name(tzname):
 def build_countries_and_timezones_list(now):
     countries = _translations_countries[:]
     base_country_codes = set([c[0] for c in _translations_countries])
+    pytz_countries = []
     for code in pytz.country_names:
         try:
             timezones = pytz.country_timezones(code)
         except KeyError:
             timezones = ()
         if code not in base_country_codes and len(timezones) > 0:
-            countries.append((code, pytz.country_names[code]))
+            pytz_countries.append((code, pytz.country_names[code]))
+    pytz_countries.sort(key=lambda el: el[1]) # Sort by country names, not codes
+    countries.extend(pytz_countries)
     country_tz = {}
     for code, _ in countries:
         timezones = pytz.country_timezones(code)
