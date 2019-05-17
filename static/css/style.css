@@ -665,7 +665,6 @@ form .controls input[type="submit"] {
 }
 .md code {
     font-family: "IBM Plex Mono", Consolas, Monaco, "Lucida Console", monospace;
-    word-break: break-all;
 }
 .md img {
     max-width: 100%;
@@ -692,6 +691,18 @@ form .controls input[type="submit"] {
     padding: 0 0 0 0.5em;
     border-left: 3px solid #202F47;
     font-style: italic;
+}
+.md table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+}
+.md table td, .md table th {
+    padding: 0.2em;
+    vertical-align: top;
+    border: 1px solid #8F98A6;
 }
 /* Intermediate screen size */
 @media screen and (max-width: 818px) {

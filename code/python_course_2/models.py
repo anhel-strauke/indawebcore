@@ -2,7 +2,7 @@ from django.db import models
 from datetime import time
 from django.utils import timezone
 
-# Create your models here.
+
 class Course(models.Model):
     identifier = models.SlugField(max_length=30, unique=True)
     start_date = models.DateField()

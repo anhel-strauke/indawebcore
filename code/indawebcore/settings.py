@@ -146,16 +146,14 @@ else:
     STATIC_URL = '/static/'
 
 if DEPLOYED:
-	STATICFILES_DIRS = [
-		#"/home/website/static",
-	]
+    STATICFILES_DIRS = []
 else:
-	STATICFILES_DIRS = [
-	    os.path.join(BASE_DIR, "../static"),
-	]
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "../static"),
+    ]
 
 if DEPLOYED:
-    MEDIA_ROOT = "/home/website/upload/" #os.path.join(BASE_DIR, "upload")
+    MEDIA_ROOT = "/home/website/upload/"
     MEDIA_URL = "//static." + socket.gethostname() + "/upload/"
 else:
     MEDIA_ROOT = os.path.join(BASE_DIR, "upload")
@@ -174,4 +172,3 @@ if DEPLOYED:
     SECURE_HSTS_SECONDS = 24 * 3600
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_BROWSER_XSS_FILTER = True
-    

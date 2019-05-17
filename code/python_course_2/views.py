@@ -1,23 +1,21 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.utils.timezone import get_default_timezone
 from django.http import Http404, HttpResponseRedirect
 from django.core.paginator import Paginator
-
-from .utils import prepare_context, get_course_and_prepare_context, visit_timetable, visit_link_posts
+from .utils import get_course_and_prepare_context, visit_timetable, visit_link_posts
 from .utils import build_events_and_messages_for_course, build_calendar_from_events
 from .utils import set_timezone_to_request, readable_name_for_course
 from .timezones import translate_tz_name, make_readable_utc_offset, build_countries_and_timezones_list
 from .timezones import find_country_for_timezone
 from .models import Course, LinkPost, ReadingItem, Document
-from datetime import datetime
 
-# Create your views here.
+
 def lessons_view(request, course_id=None):
     course, context = get_course_and_prepare_context(request, course_id, "lessons")
     if not course:
         return render(request, "no_course.html", context)
-    lessons = course.lessons.filter(visible=True).order_by("-date")
+    order = "-date" if course.active else "date"
+    lessons = course.lessons.filter(visible=True).order_by(order)
     out_lessons = []
     for l in lessons:
         out_lessons.append({
@@ -81,7 +79,7 @@ def timetable_view(request):
     context["calendar"] = calendar
     context["user_tz_name"] = full_user_tz + " (" + user_tz_utc + ")"
     return render(request, "timetable.html", context)
-        
+
 
 def change_timezone_view(request):
     course, context = get_course_and_prepare_context(request, None, "change_timezone")
@@ -99,9 +97,26 @@ def change_timezone_view(request):
             user_country_code = "RU"
             user_tz_name = "Asia/Novosibirsk"
         context["countries"] = [{"code": c[0], "name": c[1]} for c in countries]
-        context["all_tz"] = [{"code": code, "tz": [{"name": tz[1], "tz": tz[0], "time": tz[2]} for tz in val]} for code, val in tzlist.items()]
+        context["all_tz"] = [
+            {
+                "code": code,
+                "tz": [
+                    {
+                        "name": tz[1],
+                        "tz": tz[0],
+                        "time": tz[2]
+                    } for tz in val
+                ]
+            } for code, val in tzlist.items()
+        ]
         context["selected_country_code"] = user_country_code
-        context["selected_country_tz"] =  [{"name": tz[1], "tz": tz[0], "time": tz[2]} for tz in tzlist[user_country_code]]
+        context["selected_country_tz"] = [
+            {
+                "name": tz[1],
+                "tz": tz[0],
+                "time": tz[2]
+            } for tz in tzlist[user_country_code]
+        ]
         context["selected_tz"] = user_tz_name
         return render(request, "chahge_timezone.html", context)
 
@@ -126,7 +141,7 @@ def linkpost_view(request, course_id=None):
     context["links"] = links_page
     return render(request, "links.html", context)
 
-    
+
 def reading_view(request, course_id=None):
     course, context = get_course_and_prepare_context(request, course_id, "reading")
     reading_items = ReadingItem.objects.order_by("index")
@@ -146,7 +161,8 @@ def courses_view(request):
         OldCourse = None
     course, context = get_course_and_prepare_context(request, None, "courses")
     courses = Course.objects.order_by("-start_date")
-    out_courses = [{
+    out_courses = [
+        {
             "name": readable_name_for_course(c),
             "url": reverse("lessons_view") if c.active else reverse("c_lessons_view", kwargs={"course_id": c.identifier}),
             "active": c.active,
@@ -154,7 +170,8 @@ def courses_view(request):
     ]
     if OldCourse:
         old_courses = OldCourse.objects.order_by("-start_date")
-        out_old_courses = [{
+        out_old_courses = [
+            {
                 "name": readable_name_for_course(c),
                 "url": reverse("o_lessons_view", kwargs={"course_id": c.identifier}),
                 "active": False
