@@ -3,7 +3,7 @@
 {% block title %}Занятия — Язык программирования Python / IT-Академия Алексея Сухорукова (курс {{course.name|lower}}){% endblock %}
 {% block content %}
                 <h1 class="page-title mobile">Занятия</h1>
-                {% for lesson in lessons %}<article class="lesson{% if forloop.first %} current{% endif %}" id="lesson-{{lesson.id}}">
+                {% for lesson in lessons %}<article class="lesson{% if forloop.first and course.active %} current{% endif %}" id="lesson-{{lesson.id}}">
                     <h1>Занятие {% if course.active %}{{forloop.revcounter}}{% else %}{{forloop.counter}}{% endif %}. {{lesson.title}}</h1>
                     <div class="date">{{lesson.date|date:"j E"}}</div>
                     <div class="description md">
