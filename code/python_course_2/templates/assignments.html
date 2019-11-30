@@ -3,7 +3,7 @@
 {% block title %}Задачи — Язык программирования Python / IT-Академия Алексея Сухорукова (курс {{course.name|lower}}){% endblock %}
 {% block content %}
                 <h1 class="page-title mobile">Домашние задания</h1>
-                {% for assignment in assignments %}<a href="{% url "assignment_view" assignment.id %}" class="assignment">
+                {% for assignment in assignments %}<a href="{% if course.archived %}{% url "c_assignment_view" course.id assignment.id %}{% else %}{% url "assignment_view" assignment.id %}{% endif %}" class="assignment">
                     <h1>Задание {{ forloop.counter }}. {{assignment.title}}</h1>
                     <div class="description md">
                         {{ assignment.description|markdown:"tables"}}

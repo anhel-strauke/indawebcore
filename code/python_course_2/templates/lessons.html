@@ -10,7 +10,7 @@
                         {{lesson.description|markdown}}
                     </div>
                     {% if lesson.links %}<ul class="links">
-                        {% for link in lesson.links %}<li><a{% if link.is_new_folder %} target="_blank"{% endif %} href="{{link.url}}">{{link.text}}</a></li>
+                        {% for link in lesson.links %}<li><a{% if link.is_new_window %} target="_blank"{% endif %} href="{{link.url}}">{{link.text}}</a></li>
                         {% endfor %}
                     </ul>{% endif %}
                 </article>

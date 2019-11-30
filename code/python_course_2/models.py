@@ -52,7 +52,8 @@ class TimetableItem(models.Model):
     end_time = models.TimeField()
 
     def __str__(self):
-        return "{} {}-{}".format(self.DAY_NAME_CHOICES[self.weekday][1], self.start_time.strftime("%H:%M"), self.end_time.strftime("%H:%M"))
+        return "{} {}-{}".format(self.DAY_NAME_CHOICES[self.weekday][1],
+                                 self.start_time.strftime("%H:%M"), self.end_time.strftime("%H:%M"))
 
 
 class TimetableAlteration(models.Model):
@@ -68,7 +69,9 @@ class TimetableAlteration(models.Model):
         if self.cancelled:
             text = "{} cancelled".format(self.date.strftime("%d.%m.%y"))
         else:
-            text = "{} added ({}-{})".format(self.date.strftime("%d.%m.%y"), self.start_time.strftime("%H:%M"), self.end_time.strftime("%H:%M"))
+            text = "{} added ({}-{})".format(self.date.strftime("%d.%m.%y"),
+                                             self.start_time.strftime("%H:%M"),
+                                             self.end_time.strftime("%H:%M"))
         if len(self.message) > 0:
             msg = " ({})".format(self.message)
         else:
@@ -85,9 +88,9 @@ class Lesson(models.Model):
 
     def __str__(self):
         return "{}: {} ({})".format(self.date.strftime("%d.%m.%y"),
-            self.title,
-            self.course.identifier)
-    
+                                    self.title,
+                                    self.course.identifier)
+
 
 class LessonLink(models.Model):
     class Meta:
@@ -100,8 +103,11 @@ class LessonLink(models.Model):
     def __str__(self):
         return "[{}] {} <{}>".format(self.index, self.text, self.url)
 
-    def is_new_folder(self):
-        if self.url.startswith("https://anhel.in/python/") or self.url.startswith("https://www.anhel.in/python/") or self.url.startswith("/"):
+    def is_new_window(self):
+        need_same_window = (self.url.startswith("https://anhel.in/python/") or
+                            self.url.startswith("https://www.anhel.in/python/") or
+                            self.url.startswith("/"))
+        if need_same_window:
             return False
         return True
 
@@ -131,6 +137,7 @@ class LinkPost(models.Model):
 
 def reading_item_index_default():
     return len(ReadingItem.objects.all())
+
 
 class ReadingItem(models.Model):
     class Meta:

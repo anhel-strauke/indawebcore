@@ -1,14 +1,19 @@
 import calendar
-from datetime import date, datetime, timedelta
+from datetime import date, time, datetime, timedelta
 import pytz
 from .timezones import make_tz_shortname_for
 
 from .models import Course, LinkPost, TimetableAlteration
+
 from django.utils.timezone import get_default_timezone
+from django.urls import reverse
+from django.http import Http404
 
 ISO_STRFTIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
 MONTH_NAMES = ("", "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь")
-MONTH_NAMES_ALT = ("", "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря")
+MONTH_NAMES_ALT = ("", "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября",
+                   "ноября", "декабря")
+
 
 def _month_and_year(dt, do_year=True):
     m = MONTH_NAMES[dt.month]
@@ -16,6 +21,7 @@ def _month_and_year(dt, do_year=True):
         return "{} {}".format(m, dt.year)
     else:
         return m
+
 
 def readable_name_for_course(course):
     if not course:
@@ -25,13 +31,13 @@ def readable_name_for_course(course):
     except AttributeError:
         # It's an old course, without end date
         return _month_and_year(course.start_date).capitalize()
-    if course.start_date.year == course.end_date.year:
-        if course.start_date.month == course.end_date.month:
+    if course.start_date.year == x.year:
+        if course.start_date.month == x.month:
             return _month_and_year(course.start_date).capitalize()
         else:
-            return "{}-{}".format(_month_and_year(course.start_date, do_year=False), _month_and_year(course.end_date)).capitalize()
+            return "{}-{}".format(_month_and_year(course.start_date, do_year=False), _month_and_year(x)).capitalize()
     else:
-        return "{} - {}".format(_month_and_year(course.start_date), _month_and_year(course.end_date)).capitalize()
+        return "{} - {}".format(_month_and_year(course.start_date), _month_and_year(x)).capitalize()
 
 
 def datetime_from(a_date, a_time, a_tz):
@@ -40,7 +46,9 @@ def datetime_from(a_date, a_time, a_tz):
 
 
 def _remove_redundant_weeks(weeks):
-    count_if = lambda collection, cond: sum(1 for e in collection if cond(e))
+    def count_if(collection, cond):
+        return sum(1 for e in collection if cond(e))
+
     first_weeks = weeks[:2]
     last_weeks = weeks[-2:]
     if count_if(first_weeks, lambda w: count_if(w, lambda d: d["type"])) == 0:
@@ -59,13 +67,12 @@ def build_events_and_messages_for_course(course, from_date, server_tz):
     end_date = course.end_date
     if start_date > end_date:
         return ([], [])
-    res_cal = []
     res_messages = []
     today = date.today()
 
     timetable_items = {}
     for item in course.timetable.all():
-        timetable_items[item.weekday] = (item.start_time, item.end_time)    
+        timetable_items[item.weekday] = (item.start_time, item.end_time)
 
     timetable_alts = {}
     for alt in course.timetable_alterations.filter(date__gte=from_date):
@@ -126,18 +133,18 @@ def build_calendar_from_events(events, target_tz):
                         "time_end": time_of_lesson_end_as_string,
                     }
     """
-    
+
     # Stage 2. Translate events into another time zone and build calendar
     calendar_mgr = calendar.Calendar()
 
     if not events:
-        return ([], res_messages)
-    
+        return ([], [])
+
     targ_start_date = events[0][0].astimezone(target_tz).date()
     targ_end_date = events[-1][0].astimezone(target_tz).date()
     year = targ_start_date.year
     month = targ_start_date.month
-    
+
     res_cal = []
 
     event_i = 0
@@ -155,16 +162,16 @@ def build_calendar_from_events(events, target_tz):
             is_today = (d == targ_today and d.month == month)
             if d.month != month:
                 new_day = {
-                    "day": "", 
-                    "time_start": "", 
-                    "time_end": "", 
+                    "day": "",
+                    "time_start": "",
+                    "time_end": "",
                     "type": ""
                 }
             else:
                 new_day = {
-                    "day": d.day, 
-                    "time_start": "", 
-                    "time_end": "", 
+                    "day": d.day,
+                    "time_start": "",
+                    "time_end": "",
                     "type": ""
                 }
                 if targ_start_date <= d <= targ_end_date and event_i < len(events):
@@ -195,7 +202,7 @@ def build_calendar_from_events(events, target_tz):
             month = 1
             year += 1
     return res_cal
-    
+
 
 def get_closest_lesson(course, now_in_server_tz, target_tz):
     server_tz = now_in_server_tz.tzinfo
@@ -221,7 +228,7 @@ def get_timezone_from_request(request, server_tz):
 
 def set_timezone_to_request(request, tz):
     try:
-        test = pytz.timezone(tz)
+        pytz.timezone(tz)
         request.session["tz"] = tz
     except pytz.exceptions.UnknownTimeZoneError:
         request.session["tz"] = get_default_timezone().zone
@@ -317,5 +324,20 @@ def get_course_and_prepare_context(request, course_id, page=""):
         if course_id:
             raise Http404
         else:
-            return (None, context) 
+            return (None, context)
     return (course, context)
+
+
+def update_assignment_link(link, course):
+    template = "https://anhel.in/python/assignments/"
+    if link.url.startswith(template):
+        assignment_id = link.url[len(template):]
+        if assignment_id.endswith("/"):
+            assignment_id = assignment_id[:-1]
+        return {
+            "is_new_window": False,
+            "url": reverse("c_assignment_view", kwargs={"course_id": course["id"], "assignment_id": assignment_id}),
+            "text": link.text,
+        }
+    else:
+        return link

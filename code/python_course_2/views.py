@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from .utils import get_course_and_prepare_context, visit_timetable, visit_link_posts
 from .utils import build_events_and_messages_for_course, build_calendar_from_events
 from .utils import set_timezone_to_request, readable_name_for_course
+from .utils import update_assignment_link
 from .timezones import translate_tz_name, make_readable_utc_offset, build_countries_and_timezones_list
 from .timezones import find_country_for_timezone
 from .models import Course, LinkPost, ReadingItem, Document
@@ -18,12 +19,16 @@ def lessons_view(request, course_id=None):
     lessons = course.lessons.filter(visible=True).order_by(order)
     out_lessons = []
     for l in lessons:
+        links_to_display = l.links.order_by("index")
+        if course_id and course:
+            links_to_display = [update_assignment_link(link, context["course"])
+                                for link in links_to_display]
         out_lessons.append({
             "id": l.id,
             "date": l.date,
             "title": l.title,
             "description": l.description,
-            "links": l.links.order_by("index")
+            "links": links_to_display
         })
     context["lessons"] = out_lessons
     return render(request, "lessons.html", context)
