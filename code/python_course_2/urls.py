@@ -1,5 +1,4 @@
 from django.urls import path
-from django.contrib import admin
 
 from .views import lessons_view, assignments_view, assignment_view, timetable_view, change_timezone_view
 from .views import linkpost_view, reading_view, contacts_view, courses_view, document_view
